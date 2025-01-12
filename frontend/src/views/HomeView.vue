@@ -9,11 +9,12 @@ import Testimonials from '@/components/Home/Testimonials.vue';
 import Team from '@/components/Home/Team.vue';
 import Contact from '@/components/Home/Contact.vue';
 import Footer from '@/components/Home/Footer.vue';
+import Navbar from '@/components/Home/Navbar/Navbar.vue';
 </script>
 
 <template>
   <main>
-    <HeroPage />
+    <Navbar />
     <HeroCarousel />
     <AboutUsPage />
     <Product />
