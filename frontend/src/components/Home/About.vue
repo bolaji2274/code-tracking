@@ -73,7 +73,7 @@
     </section>
 
     <!-- Call-to-Action Section -->
-    <section class="py-16 bg-blue-600 text-white text-center">
+    <section class="py-16 container bg-blue-600 text-white text-center">
       <h2 class="text-4xl font-semibold mb-4">Partner with NASFARM Today</h2>
       <p class="text-lg mb-6">Ready to grow your farm? Connect with us and start your journey to success.</p>
       <router-link to="/contact" class="inline-block">
@@ -215,4 +215,13 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+.about_section .img-box {
+    margin-top: 45px;
+    margin-left: 10px;
+    width: 90%;
+    height: 300px;
+    border-radius: 15px;
+  }
+
 </style>

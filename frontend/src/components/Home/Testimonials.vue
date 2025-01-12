@@ -5,19 +5,18 @@
     <div class="relative max-w-xl mx-auto">
       <transition :name="transitionName">
         <div
-          v-for="(testimonial, index) in testimonialsData"
-          v-show="current === index"
-          :key="testimonial.id"
           class="flex flex-col items-center p-8 bg-white rounded-lg shadow-md"
+          v-show="current >= 0"
+          :key="testimonialsData[current].id"
         >
           <img
-            :src="testimonial.image"
-            :alt="testimonial.name"
+            :src="testimonialsData[current].image"
+            :alt="testimonialsData[current].name"
             class="w-24 h-24 rounded-full mb-4"
           />
-          <p class="text-lg italic mb-4">"{{ testimonial.message }}"</p>
-          <h3 class="text-xl font-semibold">{{ testimonial.name }}</h3>
-          <span class="text-gray-500">{{ testimonial.location }}</span>
+          <p class="text-lg italic mb-4">"{{ testimonialsData[current].message }}"</p>
+          <h3 class="text-xl font-semibold">{{ testimonialsData[current].name }}</h3>
+          <span class="text-gray-500">{{ testimonialsData[current].location }}</span>
         </div>
       </transition>
       

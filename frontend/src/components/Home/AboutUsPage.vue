@@ -46,7 +46,7 @@
     </section>
 
     <!-- Call-to-Action Section -->
-    <section class="py-16 bg-blue-600 text-white">
+    <section class="py-16 container mx-auto bg-blue-600 text-white">
       <div class="container mx-auto px-8 md:px-16 text-center">
         <MotionDiv
           :initial="{ opacity: 0 }"
