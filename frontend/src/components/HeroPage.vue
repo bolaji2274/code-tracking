@@ -1,3 +1,5 @@
 <template>
-    <h1>Hero Page</h1>
+    <div>
+        hello geror page
+    </div>
 </template>

@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="h-full pb-4">
-      <!-- <Nav /> -->
-    </div>
-    <section class="vh-70 bg-img">
+    <!-- <Nav /> -->
+    <section class="vh-70 bg-img" :style="backgroundStyle">
       <div class="container py-5 h-100 d-flex justify-content-center align-items-center">
         <div class="card register-card" style="border-radius: 1rem">
           <div class="row g-0">
@@ -11,14 +9,10 @@
               <div class="card-body p-4 text-black">
                 <form @submit.prevent="handleSubmit">
                   <div class="d-flex align-items-center mb-3 pb-1">
-                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219" />
-                    <span class="h2 fw-bold mb-0">
-                      Welcome to <b>Nasfarm 👋</b>
-                    </span>
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219"></i>
+                    <span class="h2 fw-bold mb-0">Welcome to <b>Nasfarm 👋</b></span>
                   </div>
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                    Sign Up
-                  </h5>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1">Sign Up</h5>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="first_name">First Name</label>
@@ -28,9 +22,7 @@
                       class="form-control form-control-lg"
                       v-model="firstName"
                     />
-                    <p v-if="errors.first_name" class="text-danger">
-                      {{ errors.first_name }}
-                    </p>
+                    <p v-if="errors.first_name" class="error-text">{{ errors.first_name }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -41,9 +33,7 @@
                       class="form-control form-control-lg"
                       v-model="lastName"
                     />
-                    <p v-if="errors.last_name" class="text-danger">
-                      {{ errors.last_name }}
-                    </p>
+                    <p v-if="errors.last_name" class="error-text">{{ errors.last_name }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -54,9 +44,7 @@
                       class="form-control form-control-lg"
                       v-model="email"
                     />
-                    <p v-if="errors.email" class="text-danger">
-                      {{ errors.email }}
-                    </p>
+                    <p v-if="errors.email" class="error-text">{{ errors.email }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -67,9 +55,7 @@
                       class="form-control form-control-lg"
                       v-model="farmBranchName"
                     />
-                    <p v-if="errors.farm_branch_name" class="text-danger">
-                      {{ errors.farm_branch_name }}
-                    </p>
+                    <p v-if="errors.farm_branch_name" class="error-text">{{ errors.farm_branch_name }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -77,17 +63,15 @@
                     <div class="input-group">
                       <span class="input-group-text">+234</span>
                       <input
-                        type="text"
-                        id="phone_number"
-                        class="form-control form-control-lg"
-                        v-model="phoneNumber"
-                        @input="handlePhoneChange"
-                        placeholder="Enter your phone number"
-                      />
+            type="text"
+            id="phone_number"
+            class="form-control form-control-lg"
+            v-model="phoneNumber" 
+            @input="handlePhoneChange"
+            placeholder="Enter your phone number"
+          />
                     </div>
-                    <p v-if="errors.phone_number" class="text-danger">
-                      {{ errors.phone_number }}
-                    </p>
+                    <p v-if="errors.phone_number" class="error-text">{{ errors.phone_number }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -102,14 +86,14 @@
                       <button
                         type="button"
                         class="btn btn-outline-secondary"
-                        @click="toggleShowPassword"
+                        @click="togglePassword"
+                        style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 0.5rem"
                       >
-                        <component :is="showPassword ? 'EyeOff' : 'Eye'" />
+                        <Eye v-if="showPassword" size="20" class="me-2" />
+                        <EyeOff v-else size="20" class="me-2" />
                       </button>
                     </div>
-                    <p v-if="errors.password" class="text-danger">
-                      {{ errors.password }}
-                    </p>
+                    <p v-if="errors.password" class="error-text">{{ errors.password }}</p>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -124,20 +108,18 @@
                       <button
                         type="button"
                         class="btn btn-outline-secondary"
-                        @click="toggleShowPassword"
+                        @click="togglePassword"
+                        style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 0.5rem"
                       >
-                        <component :is="showPassword ? 'EyeOff' : 'Eye'" />
+                        <Eye v-if="showPassword" size="20" class="me-2" />
+                        <EyeOff v-else size="20" class="me-2" />
                       </button>
                     </div>
-                    <p v-if="errors.password2" class="text-danger">
-                      {{ errors.password2 }}
-                    </p>
+                    <p v-if="errors.password2" class="error-text">{{ errors.password2 }}</p>
                   </div>
 
                   <div class="d-flex justify-content-center mt-4 mb-4">
-
-                    <!-- <Loading v-if="loading" /> -->
-
+                    <Loading v-if="loading" />
                   </div>
 
                   <div class="pt-1 mb-4 d-flex justify-content-center">
@@ -147,12 +129,7 @@
                   </div>
 
                   <p class="small text-muted mb-5">
-                    Already have an account?
-                    <router-link
-                      to="/login"
-                      style="color: #393f81; margin-left: 10px"
-                      >Sign in here</router-link
-                    >
+                    Already have an account? <router-link to="/login" style="color: #393f81; margin-left: 10px">Sign in here</router-link>
                   </p>
                 </form>
               </div>
@@ -163,10 +140,7 @@
     </section>
 
     <footer class="bg-light text-center text-lg-start">
-      <div
-        class="text-center p-3"
-        style="background-color: rgba(0, 0, 0, 0.2)"
-      >
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2024 - till date Copyright:
         <a class="text-dark" href="https://github.com/bolaji2274/">@ Bolaji Dev</a>
       </div>
@@ -175,19 +149,41 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
 // import Nav from "../Nav.vue";
-// import Loading from "../../context/Loading.vue";
-import { Eye, EyeOff } from "lucide-vue-next"; // Lucide Vue Icons
+import Loading from "./Loading.vue";
+import { Eye, EyeOff } from "lucide-vue-next"; // Adjust for Vue.js version of lucide icons
+import { useAuthContext } from "@/components/context/AuthContext";
+import bg_img from "@/assets/images/chicken-3.jpg"
+
 
 export default {
-  components: { 
-    // Nav, 
-    // Loading, 
-    Eye, 
-    EyeOff 
+  components: {
+    // Nav,
+    Loading,
+    Eye,
+    EyeOff
+  },
+  data() {
+    return {
+      imageUrl: bg_img, // URL of your background image
+    };
+  },
+  computed: {
+    // Return the style object with dynamic background image
+    backgroundStyle() {
+      return {
+        backgroundImage: `url(${this.imageUrl})`,
+        backgroundSize: 'cover', // Optional, to ensure the background covers the whole element
+        backgroundPosition: 'center', // Optional, to center the background image
+      };
     },
+  },
   setup() {
+    const router = useRouter();
+    const { registerUser, errors, clearErrors } = useAuthContext();
+
     const firstName = ref("");
     const lastName = ref("");
     const farmBranchName = ref("");
@@ -198,22 +194,13 @@ export default {
     const loading = ref(false);
     const showPassword = ref(false);
 
-    const { registerUser, errors, clearErrors } = inject("AuthContext");
-
     const handleSubmit = async () => {
       loading.value = true;
       clearErrors();
 
       try {
-        await registerUser(
-          firstName.value,
-          lastName.value,
-          farmBranchName.value,
-          email.value,
-          phoneNumber.value,
-          password.value,
-          password2.value
-        );
+        await registerUser(firstName.value, lastName.value, farmBranchName.value, email.value, phoneNumber.value, password.value, password2.value);
+        router.push("/login"); // Redirect after successful registration
       } catch (error) {
         console.error("Registration error:", error);
       } finally {
@@ -224,13 +211,13 @@ export default {
     const handlePhoneChange = (e) => {
       const phoneValue = e.target.value;
       if (phoneValue.startsWith("0")) {
-        phoneNumber.value = "234" + phoneValue.slice(1);
+        this.phoneNumber = '234' + phoneValue.slice(1); // Automatically replace starting '0' with '234'
       } else {
         phoneNumber.value = "234" + phoneValue;
       }
     };
 
-    const toggleShowPassword = () => {
+    const togglePassword = () => {
       showPassword.value = !showPassword.value;
     };
 
@@ -246,33 +233,15 @@ export default {
       showPassword,
       handleSubmit,
       handlePhoneChange,
-      toggleShowPassword,
-      errors,
+      togglePassword,
+      errors
     };
-  },
+  }
 };
 </script>
 
 <style scoped>
-.bg-img {
-  background-color: #9A616D;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+.error-text {
+  color: red;
 }
-
-.register-card {
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 768px) {
-  .register-card {
-    padding: 20px;
-  }
-}
-
 </style>

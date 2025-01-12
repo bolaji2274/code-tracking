@@ -11,6 +11,9 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Import Bootstrap JavaScript
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const app = createApp(App)
 
