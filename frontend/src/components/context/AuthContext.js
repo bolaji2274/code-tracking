@@ -66,50 +66,90 @@ export function useAuthProvider() {
     }
   };
 
-  const registerUser = async (details) => {
-    try {
-      const response = await fetch("https://api-bkrt.onrender.com/api/register/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(details),
-      });
+  // const registerUser = async (details) => {
+  //   try {
+  //     const response = await fetch("https://api-bkrt.onrender.com/api/register/", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(details),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (response.ok) {
-        state.errors = {};
-        router.push("/login");
-        Swal.fire({
-          title: "Registration Successful!",
-          text: "Check your email to verify your account.",
-          icon: "success",
-          toast: true,
-          timer: 3000,
-          position: "top-right",
-        });
-      } else {
-        state.errors = data;
-        Swal.fire({
-          title: "Registration Failed!",
-          text: "Please check the form for errors.",
-          icon: "error",
-          toast: true,
-          timer: 3000,
-          position: "top-right",
-        });
-      }
-    } catch (error) {
-      console.error("Registration error:", error);
-      Swal.fire({
-        title: "Registration Error!",
-        text: "An error occurred. Please try again.",
-        icon: "error",
-        toast: true,
-        timer: 3000,
-        position: "top-right",
-      });
-    }
-  };
+  //     if (response.ok) {
+  //       state.errors = {};
+  //       router.push("/login");
+  //       Swal.fire({
+  //         title: "Registration Successful!",
+  //         text: "Check your email to verify your account.",
+  //         icon: "success",
+  //         toast: true,
+  //         timer: 3000,
+  //         position: "top-right",
+  //       });
+  //     } else {
+  //       state.errors = data;
+  //       Swal.fire({
+  //         title: "Registration Failed!",
+  //         text: "Please check the form for errors.",
+  //         icon: "error",
+  //         toast: true,
+  //         timer: 3000,
+  //         position: "top-right",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Registration error:", error);
+  //     Swal.fire({
+  //       title: "Registration Error!",
+  //       text: "An error occurred. Please try again.",
+  //       icon: "error",
+  //       toast: true,
+  //       timer: 3000,
+  //       position: "top-right",
+  //     });
+  //   }
+  // };
+
+const registerUser = async () => {
+  const response = await fetch("https://api-bkrt.onrender.com/api/register/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      first_name: firstName.value,
+      last_name: lastName.value,
+      farm_branch_name: farmBranchName.value,
+      email: email.value,
+      phone_number: phoneNumber.value,
+      password: password.value,
+      password_confirmation: password2.value,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    router.push("/login");
+    Swal.fire({
+      title: "Registration Successful!",
+      text: "Check your email to verify your account.",
+      icon: "success",
+      toast: true,
+      timer: 3000,
+      position: "top-right",
+    });
+  } else {
+    console.error(data);
+    Swal.fire({
+      title: "Registration Failed!",
+      text: "Please check the form for errors.",
+      icon: "error",
+      toast: true,
+      timer: 3000,
+      position: "top-right",
+    });
+  }
+};
 
   const logoutUser = () => {
     state.authTokens = null;
