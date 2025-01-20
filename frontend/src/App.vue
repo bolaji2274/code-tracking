@@ -41,18 +41,8 @@ onMounted(() => {
 <style scoped>
 /* Add or modify your styles here */
 /* .wrapper {
-  text-align: center;
-  margin: 20px 0;
-}
 
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #3498db;
-  font-weight: bold;
-}
 
-nav a:hover {
-  text-decoration: underline;
+
 } */
 </style>
