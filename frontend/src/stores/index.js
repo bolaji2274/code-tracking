@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    products: [], // Example state
+    products: [], 
   },
   mutations: {
     setProducts(state, products) {
@@ -12,7 +12,7 @@ const store = createStore({
   },
   actions: {
     addToCart({ commit }, product) {
-      console.log('Adding to cart:', product); // Example action
+      console.log('Adding to cart:', product); 
     },
   },
   getters: {

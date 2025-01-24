@@ -43,7 +43,7 @@ export function useAuthProvider() {
           position: "top-right",
         });
       } else {
-        state.errors = data; // Capture field-specific errors
+        state.errors = data;
         Swal.fire({
           title: "Login Failed!",
           text: data.detail || "Invalid credentials.",
