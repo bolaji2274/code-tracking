@@ -26,4 +26,18 @@ class LivestockController extends Controller
 
         return response()->json(['message' => 'Livestock added successfully', 'data' => $livestock]);
     }
+    public function lowStock()
+    {
+        $lowStockLivestock = Livestock::where('quantity', '<', 10)->get();
+        return response()->json($lowStockLivestock);
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        $livestock = Livestock::findOrFail($id);
+        $livestock->quantity = $request->quantity;
+        $livestock->save();
+
+        return response()->json(['message' => 'Quantity updated successfully!']);
+    }
 }
