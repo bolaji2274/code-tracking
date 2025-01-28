@@ -1,6 +1,13 @@
+<!-- use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LivestockController;
+use App\Http\Controllers\ApplicationController; -->
+<?php
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LivestockController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\DashboardController; // This seems to be missing
+
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
