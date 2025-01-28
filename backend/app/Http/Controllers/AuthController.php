@@ -12,17 +12,26 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            // 'name' => 'required|string|max:255',
+            // 'email' => 'required|string|email|max:255|unique:users',
+            // 'password' => 'required|string|min:8',
+            // 'role' => 'required|in:admin,customer',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'farm_branch_name' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'role' => 'required|in:admin,customer',
+            'phone_number' => 'required|string|max:15|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'farm_branch_name' => $request->farm_branch_name,
             'email' => $request->email,
+            'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'is_admin' => $request->has('is_admin') ? $request->is_admin : false,
         ]);
 
         return response()->json(['message' => 'User registered successfully'], 201);
